@@ -1,3 +1,11 @@
+
+<!--
+
+https://dev.mysql.com/doc/refman/8.0/en/connecting-disconnecting.html
+연결방법 참고
+
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
