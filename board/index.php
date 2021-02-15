@@ -56,7 +56,7 @@
             <a href="write.php">글쓰기</a>
         </p>
     <h2>글 검색</h2>   
-    <form action="search.php" method="post">
+    <form action="search_result.php" method="post">
         <h3>검색할 메시지 번호를 입력하세요.</h3>
         <p>
             <label for="search">키워드 : </label>

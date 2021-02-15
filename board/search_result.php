@@ -10,7 +10,7 @@
 
 
     <h1>게시판</h1>
-    <h2>삭제 결과</h2>
+    <h2>검색 결과</h2>
 <ul>
 
     <?php   
@@ -26,19 +26,18 @@
     }
     //table에서 글을 조회해야함
 
-    $user_delnum=$_POST['delnum'];
+    $user_key=$_POST['skey'];
 
 
-    $sqlDel="DELETE FROM msg_board WHERE number= $user_delnum";
-    $result = mysqli_query($conn,$sqlDel);
 
 
-    //위에가 지우기 끝
-    //아래는 지운이후 재 조회
-
-     $sql="SELECT * FROM msg_board";
+    $sql="SELECT * FROM msg_board WHERE message Like '%$user_key%'";
     $result = mysqli_query($conn,$sql);
+
+
     $list='';
+
+
 
     while($row=mysqli_fetch_array($result)){
         //php에서 문자열안에서 변수출력은 {} 사용
@@ -46,16 +45,9 @@
        
     }
         echo $list;
-
-        mysqli_close($conn);
     ?>
 
 </ul>
-<?php
-    echo $user_delnum."번쨰 데이터 삭제";
-?>
-
-
     <a href='index.php'>메인으로 돌아가기</a>
 
 
