@@ -1,6 +1,11 @@
 <?php
 
+
+    session_start();
+
     $title = "Login";
+
+    require('config.php');
     include('header.php');
     require_once("functions.php");
 
@@ -17,14 +22,36 @@
     }
     */
 
+
+    if(is_user_authenticated()){ //세션에 email값이 있으면 어드민 페이지로간다.
+        redirect('admin.php');
+        die();
+    }
+
+
+
     if(isset($_POST['login'])){
        // output($_POST);  //위와 동일한 방식
 
        //이메일형식을 지켰는지 확인하기위한 필터 사용
 
         $email=filter_input(INPUT_POST,'email',FILTER_VALIDATE_EMAIL);
+        $password=$_POST['password'];
+
+
         if($email==false){
             $status="이메일 형식에 맞게 작성하세요";
+        }
+
+        if(authenticate_user($email,$password)){
+            $_SESSION['email']=$email;
+            redirect('admin.php'); //관리자페이지 이동 functions.php에 있는 함수
+            //exit() //종료 , 메시지출력 X
+
+              die(); //종료, 메시지출력
+        }
+        else{
+            $status='비번이 틀립니다.';
         }
 
 
