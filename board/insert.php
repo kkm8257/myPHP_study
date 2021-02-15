@@ -36,8 +36,8 @@
         error_log(mysqli_error($conn));//에러로그기록
     }else{
 
-        echo '저장 성공';
-
+        echo '저장 성공';   
+        //성공
     }
 
 
